@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação PlaceIn</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #141420;
+        }
+        
+        main {
+            margin: auto;
+            max-width: 1000px;
+        }
+
+        h1, h2, p, li {
+            color: white;
+        }
+
+        li strong {
+            color: #ceb675;
+        }
+
+        strong.gold {
+            color: #ceb675;
+        }
+
+        h3 {
+            color: #ceb675;
+            text-indent: 7pt;
+            background-image: linear-gradient(to right, #2a2b35, transparent);
+        }
+
+        hr {
+            color:gray;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+        }
+
+        div.function {
+            margin-top: 50px;
+        }
+
+        /* ìndice e pesquisa */
+        #indice-lateral {
+            overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
+            height: 820px; /* Define a altura máxima da div */
+            width: 200px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            position: fixed;
+            top: 20px;
+            left: 0;
+        }
+
+        #indice-lateral ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #indice-lateral li {
+            margin-bottom: 10px;
+        }
+
+        #indice-lateral a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #indice-lateral input[type="text"] {
+            width: 80%; /* Ajustar a largura da barra de pesquisa */
+            padding: 8px;
+            margin-bottom: 10px; /* Espaçamento entre a barra de pesquisa e os itens */
+            border: 1px solid #ccc;
+            background-color: #202033;
+            color: white;
+        }
+
+        .destaque {
+            background-color: rgb(24, 25, 97);
+            font-weight: bold;
+        }
+
+        /* Botão Flutuante para subir a tela */
+        .botao-flutuante {
+            position: fixed; /* Posicionamento fixo na tela */
+            bottom: 20px; /* Distância da parte inferior da tela */
+            right: 20px; /* Distância da parte direita da tela */
+            width: 50px; /* Largura do botão */
+            height: 50px; /* Altura do botão */
+            border-radius: 50%; /* Borda arredondada */
+            background-color: #30304d; /* Cor do botão */
+            color: #ceb675; /* Cor do texto */
+            text-align: center; /* Alinhamento do texto */
+            font-size: 20px; /* Tamanho da fonte */
+            cursor: pointer; /* Indicador de cursor ao passar o mouse */
+            z-index: 100; /* Posicionamento na frente de outros elementos */
+            transition: all 0.3s ease; /* Efeito de transição suave */
+        }
+
+        /* Estilos para o botão quando o mouse passa por cima */
+        .botao-flutuante:hover {
+            background-color: #141420; /* Cor do botão ao passar o mouse */
+        }
+
+        /* Estilos para o botão quando está ativo (pressionado) */
+        .botao-flutuante:active {
+            transform: scale(0.9); /* Reduzir o tamanho do botão ao pressionar */
+        }
+
+        /* Gavetas */
+        .drawer {
+            position: relative;
+            margin-bottom: 20px;
+            transition: 0.7s;
+        }
+
+        .drawer-header {
+            background-color: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .drawer-toggle i {
+            font-size: 18px;
+            transition: .5s;
+        }
+
+        .drawer-toggle i:hover {
+            font-weight: bold;
+            font-size: large;
+            transition: .5s;
+        }
+
+        .drawer-content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .drawer.open .drawer-content {
+            display: block;
+        }
+
+        .drawer.open .drawer-toggle i {
+            transform: rotate(180deg);
+        }
+        
+        /* Bloco de Código */
+        pre {
+            padding: 10px;
+            color: white;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+        }
+
+        /* Rodapé */
+        footer {
+            margin-top: 100px;
+            text-align: center;
+            background-color: #181825;
+            padding: 5px;
+            margin: -28px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: white;
+            transition: .5s;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: large;
+            transition: .5s;
+        }
+    </style>
+</head>
+<body id="Inicio">
+    <div id="indice-lateral" style="background-color: transparent;">
+        <h2 style="color: #ceb675;">Índice</h2>
+        <hr>
+        <input type="text" id="minhaPesquisa" placeholder="Pesquisar...">
+        <ul>
+            <li><a href="#Inicio">Início</a></li>
+            <li><a href="#MT_raiz">$MT_raiz</a></li>
+            <li><a href="#kripto_in">kripto_in()</a></li>
+            <li><a href="#proximo_dia_util">proximo_dia_util()</a></li>
+            <li><a href="#filemtime_remote">filemtime_remote()</a></li>
+            <li><a href="#protegeNT">protegeNT()</a></li>
+            <li><a href="#NTacentos">NTacentos()</a></li>
+            <li><a href="#baseHeader">baseHeader()</a></li>
+            <li><a href="#NTendereco">NTendereco()</a></li>
+            <li><a href="#NTflush">NTflush()</a></li>
+            <li><a href="#urlraiz">urlraiz()</a></li>
+            <li><a href="#consultaA">consultaA()</a></li>
+            <li><a href="#MT_relatorio">MT_relatorio()</a></li>
+            <li><a href="#QRcode">QRcode()</a></li>
+            <li><a href="#NTecampoS">NTecampoS()</a></li>
+            <li><a href="#mergelistas">mergelistas()</a></li>
+            <li><a href="#login">login()</a></li>
+            <li><a href="#logout">logout()</a></li>
+            <li><a href="#protege">protege()</a></li>
+            <li><a href="#user">user()</a></li>
+            <li><a href="#geraform2">geraform2()</a></li>
+            <li><a href="#NTcurl">NTcurl()</a></li>
+            <li><a href="#unzipfotos">unzipfotos()</a></li>
+            <li><a href="#zipafotos">zipafotos()</a></li>
+            <li><a href="#NTexcel">NTexcel()</a></li>
+            <li><a href="#emostra">emostra()</a></li>
+            <li><a href="#NT_relatorionews">NT_relatorionews()</a></li>
+            <li><a href="#MTenvia">MTenvia()</a></li>
+            <li><a href="#MTenvia2">MTenvia2()</a></li>
+            <li><a href="#MTenviaA">MTenviaA()</a></li>
+            <li><a href="#gravaMSG">gravaMSG()</a></li>
+            <li><a href="#NTnomearquivo">NTnomearquivo()</a></li>
+            <li><a href="#NTecampo">NTecampo()</a></li>
+            <li><a href="#data2Unix">data2Unix()</a></li>
+            <li><a href="#texto2Unix">texto2Unix()</a></li>
+            <li><a href="#Unix2data">Unix2data()</a></li>
+            <li><a href="#Unix2texto">Unix2texto()</a></li>
+            <li><a href="#NT2texto">NT2texto()</a></li>
+            <li><a href="#grava">grava()</a></li>
+            <li><a href="#gravaMassa">gravaMassa()</a></li>
+            <li><a href="#consulta">consulta()</a></li>
+            <li><a href="#p_open">p_open()</a></li>
+            <li><a href="#gravaNToc">gravaNToc()</a></li>
+            <li><a href="#alteranomeNToc">alteranomeNToc()</a></li>
+            <li><a href="#leNToc">leNToc()</a></li>
+            <li><a href="#freadNT">freadNT()</a></li>
+            <li><a href="#linkbuild">linkbuild()</a></li>
+            <li><a href="#alteraNT">alteraNT()</a></li>
+            <li><a href="#alteraNTn">alteraNTn()</a></li>
+            <li><a href="#alteraNTB">alteraNTB()</a></li>
+            <li><a href="#alteraNTmassa">alteraNTmassa()</a></li>
+            <li><a href="#alteraNTmassa3">alteraNTmassa3()</a></li>
+            <li><a href="#tabdin">tabdin()</a></li>
+            <li><a href="#desmontalink">desmontalink()</a></li>
+            <li><a href="#gravamailto">gravamailto()</a></li>
+            <li><a href="#vearquivo">vearquivo()</a></li>
+            <li><a href="#shortlink">shortlink()</a></li>
+            <li><a href="#geoip">geoip()</a></li>
+            <li><a href="#NTics">NTics()</a></li>
+            <li><a href="#tabdin2">tabdin2()</a></li>
+            <li><a href="#NTup">NTup()</a></li>
+            <li><a href="#NTgeraimg">NTgeraimg()</a></li>
+            <li><a href="#limitarTexto">limitarTexto()</a></li>
+            <li><a href="#NTftp">NTftp()</a></li>
+            <li><a href="#MTsms2">MTsms2()</a></li>
+            <li><a href="#flushcache">flushcache()</a></li>
+            <li><a href="#gerafiltro">gerafiltro()</a></li>
+            <li><a href="#geraSubstituicao">geraSubstituicao()</a></li>
+            <li><a href="#adicionaHTML">adicionaHTML()</a></li>
+            <li><a href="#gravaBanco">gravaBanco()</a></li>
+            <li><a href="#apagaBanco">apagaBanco()</a></li>
+        </ul>
+    </div>
+    <main>
+        <h1>Documentação das Funções PlaceIn</h1>
+        <hr>
+        <h2>Variáveis Globais</h2>
+        <hr>
+        <h3 id="MT_raiz">$MT_raiz</h3>
+        <p>Contém o domínio do cliente. Ideal para uso quando é preciso informar o endereço completo em um script.</p>
+        <div class="function">
+            <h2>Funções</h2>
+            <hr>
+            <h3>NTdifdata($inicio, $fim)</h3>
+            <p><strong>Descrição:</strong> Retorna a diferença de dias entre duas datas. Pode aceitar a data em vários formatos (unix ou placein), ex: 2015-08-01, 01/08/2015, 01-08-2015.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$inicio:</strong> Data inicial.</li>
+                <li><strong>$fim:</strong> Data final.</li>
+            </ul>
+        </div>
+        <div class="function" id="kripto_in">
+            <h3>kripto_in($texto, $chave)</h3>
+            <p><strong>Descrição:</strong> Criptografa uma informação que poderá ser descriptografada com <strong class="gold">kripto_out($textocriptografado, $chave)</strong>. A <strong class="gold">$chave</strong> deve ser um valor numérico e deve ser informada igual no in e no out.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto a ser criptografado.</li>
+                <li><strong>$chave:</strong> Chave de criptografia.</li>
+            </ul>
+        </div>
+        <div class="function" id="proximo_dia_util">
+            <h3>proximo_dia_util($data, $ordem)</h3>
+            <p><strong>Descrição:</strong> Envia a data do próximo dia útil após uma data informada. A data pode ser inserida no padrão <strong class="gold">yyyy-mm-dd</strong> ou <strong class="gold">dd-mm-yyyy</strong> e será retornada no mesmo formato. A <strong class="gold">$ordem</strong> pode ser um número indicando a quantidade de dias úteis para frente ou para trás (negativo), ou "ontem" para o dia útil anterior.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$data:</strong> Data de referência.</li>
+                <li><strong>$ordem:</strong> Quantidade de dias úteis ou "ontem".</li>
+            </ul>
+        </div>
+        <div class="function" id="filemtime_remote">
+            <h3>filemtime_remote($url)</h3>
+            <p><strong>Descrição:</strong> Checa a data de modificação de um arquivo, mesmo que esteja em um servidor externo.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$url:</strong> URL do arquivo.</li>
+            </ul>
+        </div>
+        <div class="function" id="protegeNT">
+            <h3>protegeNT($url)</h3>
+            <p><strong>Descrição:</strong> Interrompe a execução do script e direciona para a URL indicada se o usuário não estiver logado no PlaceIn.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$url:</strong> URL de redirecionamento.</li>
+            </ul>
+        </div>
+        <div class="function" id="NTacentos">
+            <h3>NTacentos($texto)</h3>
+            <p><strong>Descrição:</strong> Ajusta acentos de outras codificações para o padrão PlaceIn.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto a ser ajustado.</li>
+            </ul>
+        </div>
+        <div class="function" id="baseHeader">
+            <h3>baseHeader()</h3>
+            <p><strong>Descrição:</strong> Exibe os headers básicos - utf8, bibliotecas js, etc.</p>
+        </div>
+        <div class="function" id="NTendereco">
+            <h3>NTendereco($retorno)</h3>
+            <p><strong>Descrição:</strong> Captura dados de endereço da planilha Parametrização. O retorno padrão é um <strong class="gold">echo</strong> em UTF8, mas pode ser alterado para ISO ou return.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$retorno:</strong> Formato de retorno (UTF8, ISO, return).</li>
+            </ul>
+        </div>
+        <div class="function" id="NTflush">
+            <h3>NTflush()</h3>
+            <p><strong>Descrição:</strong> Força o envio de um <strong class="gold">echo</strong> do PHP. Colocar logo após o <strong class="gold">echo()</strong>.</p>
+        </div>
+        <div class="function" id="urlraiz">
+            <h3>urlraiz()</h3>
+            <p><strong>Descrição:</strong> Retorna a raiz da URL presente no navegador. Ex: www.k2web.com.br.</p>
+        </div>
+        <div class="function" id="consultaA">
+            <h3>consultaA($psql, $cache, $encode, $cryptografia, $executarURL)</h3>
+            <p><strong>Descrição:</strong> Executa o NTSELECT informado em <strong class="gold">$psql</strong>, retornando um array em UTF8. Pode utilizar cache para agilizar a consulta.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$psql:</strong> Comando NTSELECT.</li>
+                <li><strong>$cache:</strong> "sim" ou "não" para usar cache.</li>
+                <li><strong>$encode:</strong> Formato de codificação (UTF8, ISO).</li>
+                <li><strong>$cryptografia:</strong> "sim" ou "não" para usar criptografia.</li>
+                <li><strong>$executarURL:</strong> "sim" ou "não" para executar URLs dentro do conteúdo.</li>
+            </ul>
+        </div>
+        <div class="function" id="MT_relatorio">
+            <h3>MT_relatorio($arte)</h3>
+            <p><strong>Descrição:</strong> Busca dados de abertura da arte MailTo especificada e retorna um array no formato <strong class="gold">[email[ip][hora]</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$arte:</strong> Identificador da arte MailTo.</li>
+            </ul>
+        </div>
+        <div class="function" id="QRcode">
+            <h3>QRcode($link, $echo)</h3>
+            <p><strong>Descrição:</strong> Gera um arquivo QRcode com nome <strong class="gold">qrpng.png</strong> na raiz. Se <strong class="gold">$echo</strong> for "sim", exibe o arquivo em PNG no navegador.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$link:</strong> Link a ser codificado.</li>
+                <li><strong>$echo:</strong> "sim" para exibir o QRcode.</li>
+            </ul>
+        </div>
+        <div class="function" id="NTecampoS">
+            <h3>NTecampoS($string, $start, $end)</h3>
+            <p><strong>Descrição:</strong> Extrai dados de uma string, entre os caracteres <strong class="gold">$start</strong> e <strong class="gold">$end</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$string:</strong> Texto a ser processado.</li>
+                <li><strong>$start:</strong> Caracter inicial.</li>
+                <li><strong>$end:</strong> Caracter final.</li>
+            </ul>
+        </div>
+        <div class="function" id="mergelistas">
+            <h3>mergelistas($lista1, $lista2, $separador, $diferemaiuscula)</h3>
+                <p><strong>Descrição:</strong> Compara duas listas, incluindo na <strong class="gold">$lista1</strong> os itens que estão na <strong class="gold">$lista2</strong> e não estão na <strong class="gold">$lista1</strong>. Indique o separador da lista e se diferencia maiúsculas de minúsculas.</p>
+                <p><strong>Parâmetros:</strong></p>
+                <ul>
+            <li><strong>$lista1:</strong> Primeira lista.</li>
+            <li><strong>$lista2:</strong> Segunda lista.</li>
+            <li><strong>$separador:</strong> Separador de itens.</li>
+            <li><strong>$diferemaiuscula:</strong> "s" ou "n" para diferenciar maiúsculas de minúsculas.</li>
+                </ul>
+        </div>
+
+        <div class="function" id="login">
+            <h3>login($link, $linkerro, $planilha, $labelenviar, $divisor)</h3>
+            <p><strong>Descrição:</strong> Gera um formulário de login.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$link:</strong> Chave do apoiophp de destino após o login.</li>
+                <li><strong>$linkerro:</strong> URL ou chave do apoiophp em caso de erro.</li>
+                <li><strong>$planilha:</strong> Planilha alternativa de login.</li>
+                <li><strong>$labelenviar:</strong> Texto do botão enviar.</li>
+                <li><strong>$divisor:</strong> Tag HTML para separação (default é <br>).</li>
+            </ul>
+        </div>
+
+        <div class="function" id="logout">
+            <h3>logout($variaveis)</h3>
+            <p><strong>Descrição:</strong> Apaga os cookies e faz logout. <strong class="gold">$variaveis</strong> deve ser a página de destino após o logout.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$variaveis:</strong> Página de destino.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="protege">
+            <h3>protege($variaveis)</h3>
+            <p><strong>Descrição:</strong> Cancela a execução do script se o usuário não estiver logado e direciona para a página determinada em <strong class="gold">$variaveis</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$variaveis:</strong> Página de destino.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="user">
+            <h3>user($variaveis)</h3>
+            <p><strong>Descrição:</strong> Recupera o cookie de login <strong class="gold">usuNT</strong>. Se <strong class="gold">$variaveis</strong> for "NT", mostra o login via PlaceIn.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$variaveis:</strong> Modo de recuperação.</li>
+            </ul>
+        </div>
+
+        <div class="function drawer" id="geraform2">
+            <h3>geraform2($destinatarios, $assunto, $camposform, $populate, $grupo, $redirect, $objeto, $labelenviar, $retorno, $msg_aguarde, $tipolabel, $css, $msgok, $politica, $utf, $modo, $step)</h3>
+            <p><strong>Descrição:</strong> Gera um formulário padrão Geraform. Deve incluir a função <strong class="gold">baseHeader()</strong> antes da linha onde está a função <strong class="gold">geraform2()</strong>. Permite customização de visual, validações de obrigatoriedade, e pode ser utilizado como formulário simples ou avançado.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$destinatarios:</strong> Destinatários do formulário.</li>
+                <li><strong>$assunto:</strong> Assunto do formulário.</li>
+                <li><strong>$camposform:</strong> Campos do formulário.</li>
+                <li><strong>$populate:</strong> Dados a serem preenchidos no formulário.</li>
+                <li><strong>$grupo:</strong> Grupo a ser gravado no MailTo.</li>
+                <li><strong>$redirect:</strong> URL de redirecionamento em caso de sucesso.</li>
+                <li><strong>$objeto:</strong> Nome da div para o formulário.</li>
+                <li><strong>$labelenviar:</strong> Texto do botão enviar.</li>
+                <li><strong>$retorno:</strong> "echo" ou "return".</li>
+                <li><strong>$msg_aguarde:</strong> Mensagem de aguarde.</li>
+                <li><strong>$tipolabel:</strong> Tipo de label.</li>
+                <li><strong>$css:</strong> Caminho do CSS.</li>
+                <li><strong>$msgok:</strong> Mensagem de sucesso.</li>
+                <li><strong>$politica:</strong> Mostrar link para política de privacidade.</li>
+                <li><strong>$utf:</strong> Codificação dos acentos.</li>
+                <li><strong>$modo:</strong> Modo de encurtar o nome das variáveis.</li>
+                <li><strong>$step:</strong> Habilita a quebra do formulário em páginas.</li>
+            </ul>
+
+            <div class="drawer-header">
+                <span class="drawer-toggle">
+                    <i style="color: rgb(21, 142, 255); text-decoration: underline;">Ler Mais/Ler Menos</i>
+                </span>
+            </div>
+
+            <div class="drawer-content">
+                <p style="text-align: justify;"><strong class="gold">Utilização avançada</strong>: você pode interagir com os dados do formulário colocando na variável $populate os dados que deseja preencher no
+                    formulário (no padrão @/). Pode também direcionar o envio do formulário para uma $chave do apoiophp, colocando o nome da chave na
+                    variável $grupo. Dessa forma o Geraform enviará as seguintes variáveis para a chave do apoiophp: $destinatarios,$assunto,$camposform,$redirect e uma variável $dados com a massa de dados no padrão @/. Você deve retornar um echo para o formulário com uma string iniciada com OK| em caso de sucesso e erro| no caso de erro. Ex: "OK| seus dados foram enviados" ou "erro|O e-mail informado já existe". Você pode devolver comandos html ou scripts nesse retorno.
+                    $retorno: o padrão é "echo" e imprime o formulário na tela (não deixe essa variável em branco). Se for return devolve o formulário em string (ideal para manipular o código do formulário dentro do apoiophp)
+                    $msg_aguarde: coloque aqui a frase que quer que apareça quando o formulário estiver sendo enviado.
+                    $tipolabel: se for placeholder coloca o nome do campo dentro do próprio campo.
+                    $css: indique aqui o caminho completo do css. Ex: /htmlf/MailTo/geraform.css (note que nesse CSS existe tratamento do box de erro. Se comentar ou alterar esse CSS tenha certeza de manter os códigos necessários para que o box de texto do retorno de possível erro funcione).
+                    $msgok: altere aqui a mensagem de retorno - enviado com sucesso
+                    $politica: mostra o link para acesso a política de privacidade: /politicadeprivacidade_geral.html para desativar coloque "não"
+                    $utf: encode dos acentos. O default é utf-8, a outra opcão é "iso"
+                    $modo: modo de encurtar o nome das variáveis pode ser "" ou "n" (o primeiro substitui as vogais por vazio e o segundo por números 1,2,3,4,5
+                    $step: habilita a quebra do formulário em páginas. Para isso mude para "on" e coloque o código |1,stepfim|2,stepinicio| onde deseja quebrar a pagina no geraform
+                    IMPORTANTE: o Graform tem um código no CSS padrão que mostra um box de texto com possíveis erros no preenchimento. Ao alterar o CSS tenha cuidado de manter esses códigos. 
+                </p>
+                <code>
+                    <pre>
+$destinatarios="";
+$assunto="";
+$camposform="";
+$populate="";
+$grupo="";
+$redirect="";
+$objeto="";
+$labelenviar="Enviar";
+$retorno="echo";
+$msg_aguarde="Por favor aguarde, enviando dados";
+$tipolabel="";
+$css="/htmlf/paginas/geraform.css";
+$msgok="Mensagem enviada com sucesso.";
+$politica="sim";
+$utf="utf-8";
+$modo="";
+$step="off";
+
+baseHeader();
+geraform2($destinatarios,$assunto,$camposform,$populate,
+            $grupo,$redirect,$objeto,$labelenviar,$retorno,
+            $msg_aguarde,$tipolabel,$css,$msgok,$politica,
+            $utf,$modo,$step);
+                    </pre>
+                </code>
+            </div>
+        </div>
+
+        <div class="function" id="NTcurl">
+            <h3>NTcurl($url) ou NTcurlP($url)</h3>
+            <p><strong>Descrição:</strong> Acessa um endereço HTTP enviando e recebendo variáveis. A versão <strong class="gold">NTcurl</strong> envia como GET e a <strong class="gold">NTcurlP</strong> como POST.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$url:</strong> URL a ser acessada.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="unzipfotos">
+            <h3>unzipfotos($arquivo, $ncontrole)</h3>
+            <p><strong>Descrição:</strong> Descompacta um arquivo zip e inclui em uma notícia do PlaceIn. Informe o caminho correto do arquivo zip e um <strong class="gold">$ncontrole</strong> válido.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$arquivo:</strong> Caminho do arquivo zip.</li>
+                <li><strong>$ncontrole:</strong> Número de controle.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="zipafotos">
+            <h3>zipafotos()</h3>
+            <p><strong>Descrição:</strong> Faz download da pasta <strong class="gold">biblioteca/fotos</strong> em formato zip.</p>
+        </div>
+
+        <div class="function" id="NTexcel">
+            <h3>NTexcel($arquivo, $dados)</h3>
+            <p><strong>Descrição:</strong> Envia dados para download no formato Excel. Os dados devem ser separados no padrão <strong class="gold">}|</strong> - campos separados por <strong class="gold">}</strong> e linhas por <strong class="gold">|</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$arquivo:</strong> Nome do arquivo.</li>
+                <li><strong>$dados:</strong> Dados a serem incluídos.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="emostra">
+            <h3>emostra($variaveis)</h3>
+            <p><strong>Descrição:</strong> Mostra dados em modo echo.</p>
+        </div>
+
+        <div class="function" id="NT_relatorionews">
+            <h3>NT_relatorionews($campos, $filtro)</h3>
+            <p><strong>Descrição:</strong> Função interna que exibe a div com os valores da busca de qualquer campo do formato <strong class="gold">inserirNT('nomecoluna', valor);</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$campos:</strong> Campos a serem mostrados.</li>
+                <li><strong>$filtro:</strong> Filtro de busca.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="MTenvia">
+            <h3>MTenvia($destinatarios, $assunto, $mensagem, $remetente, $grupo)</h3>
+            <p><strong>Descrição:</strong> Função para envio de e-mail. O grupo é o grupo a ser gravado no MailTo. Se o destinatário contiver e-mails do próprio domínio ou da K2web, será enviado em anexo a auditoria Feedback.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$destinatarios:</strong> E-mails dos destinatários.</li>
+                <li><strong>$assunto:</strong> Assunto do e-mail.</li>
+                <li><strong>$mensagem:</strong> Corpo do e-mail.</li>
+                <li><strong>$remetente:</strong> E-mail do remetente.</li>
+                <li><strong>$grupo:</strong> Grupo a ser gravado no MailTo.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="MTenvia2">
+            <h3>MTenvia2($destinatarios, $assunto, $mensagem, $remetente, $grupo, $server)</h3>
+            <p><strong>Descrição:</strong> Função para envio de e-mail via MailTo utilizando o remetente indicado em <strong class="gold">$server</strong>. Especificar o servidor da seguinte forma: <strong class="gold">smtp|porta|remetente|senha</strong>. Exemplo: <strong class="gold">mail.k2web.com.br|587|teste@k2web.com.br|teste4321|true|ssl</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$destinatarios:</strong> E-mails dos destinatários.</li>
+                <li><strong>$assunto:</strong> Assunto do e-mail.</li>
+                <li><strong>$mensagem:</strong> Corpo do e-mail.</li>
+                <li><strong>$remetente:</strong> E-mail do remetente.</li>
+                <li><strong>$grupo:</strong> Grupo a ser gravado no MailTo.</li>
+                <li><strong>$server:</strong> Configuração do servidor SMTP.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="MTenviaA">
+            <h3>MTenviaA($destinatarios, $assunto, $mensagem, $remetente, $grupo, $empresa)</h3>
+            <p><strong>Descrição:</strong> Função que grava diretamente no sistema de mensagens do AndroidMail, no domínio do e-mail, em vez de enviar um e-mail.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$destinatarios:</strong> E-mails dos destinatários.</li>
+                <li><strong>$assunto:</strong> Assunto da mensagem.</li>
+                <li><strong>$mensagem:</strong> Corpo da mensagem.</li>
+                <li><strong>$remetente:</strong> E-mail do remetente.</li>
+                <li><strong>$grupo:</strong> Grupo a ser gravado no MailTo.</li>
+                <li><strong>$empresa:</strong> Empresa relacionada.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="gravaMSG">
+            <h3>gravaMSG($Empresa, $Ref, $Texto, $Destinatarios, $Remetente, $Assunto, $Mensagem, $planilha, $data_ativacao, $flag, $prazo)</h3>
+            <p><strong>Descrição:</strong> Função para gravar mensagem diretamente no AndroidMail.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$Empresa:</strong> Nome da empresa.</li>
+                <li><strong>$Ref:</strong> Referência.</li>
+                <li><strong>$Texto:</strong> Texto da mensagem.</li>
+                <li><strong>$Destinatarios:</strong> E-mails dos destinatários.</li>
+                <li><strong>$Remetente:</strong> E-mail do remetente.</li>
+                <li><strong>$Assunto:</strong> Assunto da mensagem.</li>
+                <li><strong>$Mensagem:</strong> Corpo da mensagem.</li>
+                <li><strong>$planilha:</strong> Planilha associada.</li>
+                <li><strong>$data_ativacao:</strong> Data de ativação.</li>
+                <li><strong>$flag:</strong> Flag.</li>
+                <li><strong>$prazo:</strong> Prazo.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="NTnomearquivo">
+            <h3>NTnomearquivo($texto, $separador)</h3>
+            <p><strong>Descrição:</strong> Limpa string para ser utilizada como nome de arquivo, eliminando acentos, caracteres especiais, etc. O separador padrão é <strong class="gold">_</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto a ser limpo.</li>
+                <li><strong>$separador:</strong> Separador para o nome do arquivo.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="NTecampo">
+            <h3>NTecampo($nomecampo, $massa)</h3>
+            <p><strong>Descrição:</strong> Extrai o valor de um campo padrão <strong class="gold">@/</strong> em uma massa de dados.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$nomecampo:</strong> Nome do campo.</li>
+                <li><strong>$massa:</strong> Massa de dados.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="data2Unix">
+            <h3>data2Unix($entdata)</h3>
+            <p><strong>Descrição:</strong> Converte data para o <strong class="gold">padrão Unix</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$entdata:</strong> Data a ser convertida.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="texto2Unix">
+            <h3>texto2Unix($texto)</h3>
+            <p><strong>Descrição:</strong> Converte texto para o <strong class="gold">padrão Unix</strong>. Exemplo: <strong class="gold">&</strong> muda para <strong class="gold">@e@</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto a ser convertido.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="Unix2data">
+            <h3>Unix2data($entdata)</h3>
+            <p><strong>Descrição:</strong> Converte data no formato <strong class="gold">YYYY-mm-dd</strong> para <strong class="gold">dd-mm-YYYY</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$entdata:</strong> Data a ser convertida.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="Unix2texto">
+            <h3>Unix2texto($texto)</h3>
+            <p><strong>Descrição:</strong> Converte padrão Unix para texto. Exemplo: <strong class="gold">@e@</strong> muda para <strong class="gold">&</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto a ser convertido.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="NT2texto">
+            <h3>NT2texto($texto)</h3>
+            <p><strong>Descrição:</strong> Arruma texto, limpando caracteres NT.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto a ser arrumado.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="grava">
+            <h3>grava($grupo, $lingua, $secao, $titulo, $texto)</h3>
+            <p><strong>Descrição:</strong> Grava novo registro no NT e retorna ncontrole. A variável <strong class="gold">$texto</strong> deve conter a massa de dados no padrão <strong class="gold">@/</strong>, com os campos especiais da Planilha.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$grupo:</strong> Grupo do registro.</li>
+                <li><strong>$lingua:</strong> Língua.</li>
+                <li><strong>$secao:</strong> Seção.</li>
+                <li><strong>$titulo:</strong> Título.</li>
+                <li><strong>$texto:</strong> Texto da massa de dados.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="gravaMassa">
+            <h3>gravaMassa($dados)</h3>
+            <p><strong>Descrição:</strong> Grava vários registros de uma vez no PlaceIn. A variável $dados deve ser no padrão: <strong class="gold">grupo}lingua}secao}titulo}texto}foto|</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$dados:</strong> Dados a serem gravados.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="consulta">
+            <h3>consulta($psql, $parcialsql1, $cache="nao")</h3>
+            <p><strong>Descrição:</strong> Pesquisa NTSELECT. Informe a Query no $psql e as variáveis em <strong class="gold">$parcialsql</strong>. O resultado da consulta é gravado em cache no servidor até o PlaceIn ser atualizado.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$psql:</strong> Query SQL.</li>
+                <li><strong>$parcialsql1:</strong> Variáveis parciais da SQL.</li>
+                <li><strong>$cache:</strong> Se "nao", não utiliza cache.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="p_open">
+            <h3>p_open($arquivo, $conteudo, $modo)</h3>
+            <p><strong>Descrição:</strong> Cria ou atualiza um arquivo de texto para armazenar dados. Similar a fopen. O <strong class="gold">$arquivo</strong> deve ser um nome sem a extensão, será incluído .txt automaticamente. <strong class="gold">$modo</strong> deve ser "a" (adiciona o novo <strong class="gold">$conteudo</strong>) ou "w" (apaga e grava o novo conteúdo).</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$arquivo:</strong> Nome do arquivo.</li>
+                <li><strong>$conteudo:</strong> Conteúdo a ser gravado.</li>
+                <li><strong>$modo:</strong> Modo de gravação.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="gravaNToc">
+            <h3>gravaNToc($arquivo, $conteudo, $modo)</h3>
+            <p><strong>Descrição:</strong> Similar a <strong class="gold">p_open()</strong>, porém grava um arquivo que não pode ser acessado pelo navegador, nem encontrado pelo Google. Ideal para informações confidenciais.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$arquivo:</strong> Nome do arquivo.</li>
+                <li><strong>$conteudo:</strong> Conteúdo do arquivo.</li>
+                <li><strong>$modo:</strong> Modo de gravação.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="alteranomeNToc">
+            <h3>alteranomeNToc($nomeantigo, $nomenovo)</h3>
+            <p><strong>Descrição:</strong> Altera o nome de um arquivo NToc.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$nomeantigo:</strong> Nome antigo do arquivo.</li>
+                <li><strong>$nomenovo:</strong> Novo nome do arquivo.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="leNToc">
+            <h3>leNToc($arquivo)</h3>
+            <p><strong>Descrição:</strong> Lê o conteúdo de um arquivo gravado com a função <strong class="gold">gravaNToc()</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$arquivo:</strong> Nome do arquivo a ser lido.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="freadNT">
+            <h3>freadNT($filename, $pedaco='', $inicio='', $fim='')</h3>
+            <p><strong>Descrição:</strong> Função para ler pedaço de arquivo de texto. Ideal para arquivos grandes. Lê blocos de 512Kb e retorna a parte do texto que inicia com uma string de texto e termina com outra string de texto.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$filename:</strong> Caminho do arquivo.</li>
+                <li><strong>$pedaco:</strong> Parte do arquivo a ser lida.</li>
+                <li><strong>$inicio:</strong> String de início.</li>
+                <li><strong>$fim:</strong> String de fim.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="linkbuild">
+            <h3>linkbuild($texto)</h3>
+            <p><strong>Descrição:</strong> Cria um texto com links para as palavras-chave do cliente. As palavras-chave e URLs devem estar na planilha SEO do domínio K2web.com.br.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto para gerar links.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="alteraNT">
+            <h3>alteraNT($ncontrole, $campo, $resultado)</h3>
+            <p><strong>Descrição:</strong> Altera valor de planilha especial no PlaceIn. Campos no padrão <strong class="gold">@/</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$ncontrole:</strong> Controle.</li>
+                <li><strong>$campo:</strong> Campos a serem alterados.</li>
+                <li><strong>$resultado:</strong> Novos valores.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="alteraNTn">
+            <h3>alteraNTn($ncontrole, $campo, $resultado, $cookieplacein)</h3>
+            <p><strong>Descrição:</strong> Modo mais rápido de gravação em massa. Altera valor de planilha especial no PlaceIn.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$ncontrole:</strong> Controle.</li>
+                <li><strong>$campo:</strong> Campos a serem alterados.</li>
+                <li><strong>$resultado:</strong> Novos valores.</li>
+                <li><strong>$cookieplacein:</strong> Cookie do PlaceIn.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="alteraNTB">
+            <h3>alteraNTB($ncontrole, $campo, $resultado)</h3>
+            <p><strong>Descrição:</strong> Faz o mesmo que a função alteraNT, porém utiliza um buffer para aumentar a velocidade.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$ncontrole:</strong> Controle.</li>
+                <li><strong>$campo:</strong> Campos a serem alterados.</li>
+                <li><strong>$resultado:</strong> Novos valores.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="alteraNTmassa">
+            <h3>alteraNTmassa($ncontrole, $massa)</h3>
+            <p><strong>Descrição:</strong> Altera todos os campos <strong class="gold">@/</strong> presentes em $massa no registro indicado em <strong class="gold">$ncontrole</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$ncontrole:</strong> Controle.</li>
+                <li><strong>$massa:</strong> Massa de dados a serem alterados.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="alteraNTmassa3">
+            <h3>alteraNTmassa3($dados)</h3>
+            <p><strong>Descrição:</strong> Alteração de múltiplos registros em alta velocidade. A variável $dados deve ter o padrão: <strong class="gold">$ncontrole}$nomecampo}$valor|</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$dados:</strong> Dados a serem alterados.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="alteraNT2">
+            <h3>alteraNT2($planilha, $ncontrole, $campo, $resultado)</h3>
+            <p><strong>Descrição:</strong> Altera valor de planilha MySQL (mensagens) no PlaceIn.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$planilha:</strong> Planilha (mensagens).</li>
+                <li><strong>$ncontrole:</strong> Controle.</li>
+                <li><strong>$campo:</strong> Campos a serem alterados.</li>
+                <li><strong>$resultado:</strong> Novos valores.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="tabdin">
+            <h3>tabdin($resultado, $display, $cabecalho)</h3>
+            <p><strong>Descrição:</strong> Imprime resultado na tela, em HTML, de acordo com a opção de visualização.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$resultado:</strong> Resultado da consulta.</li>
+                <li><strong>$display:</strong> Opção de visualização (tabela, tabela2, gráfico, pie, bar, line).</li>
+                <li><strong>$cabecalho:</strong> Cabeçalho da tabela.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="desmontalink">
+            <h3>desmontalink($massa)</h3>
+            <p><strong>Descrição:</strong> Transforma <strong class="gold">*link(</strong> em <strong class="gold">link HTML</strong>.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$massa:</strong> Massa de dados contendo links.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="gravamailto">
+            <h3>gravamailto($variaveis)</h3>
+            <p><strong>Descrição:</strong> Grava e-mail no MailTo. O primeiro parâmetro deve ser o e-mail, o segundo nome, o terceiro empresa e o quarto data de aniversário no formato Unix, o quinto grupo.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$variaveis:</strong> Variáveis de e-mail.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="vearquivo">
+            <h3>vearquivo($indice, $diretorio, $pesquisaem, $indice2)</h3>
+            <p><strong>Descrição:</strong> Verifica quais arquivos têm a palavra indicada na variável índice, no diretório especificado.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$indice:</strong> Índice da pesquisa.</li>
+                <li><strong>$diretorio:</strong> Diretório de pesquisa.</li>
+                <li><strong>$pesquisaem:</strong> Palavra para pesquisa.</li>
+                <li><strong>$indice2:</strong> Índice adicional para pesquisa.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="shortlink">
+            <h3>shortlink($linkmensagem, $pagina, $tipo)</h3>
+            <p><strong>Descrição:</strong> Gera um link reduzido. O valor padrão de tipo é "simples" e gera um shortlink inseguro e sequencial. Para um shortlink mais seguro, defina o valor como "seguro".</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$linkmensagem:</strong> Link a ser encurtado.</li>
+                <li><strong>$pagina:</strong> Página do link.</li>
+                <li><strong>$tipo:</strong> Tipo de shortlink ("simples" ou "seguro").</li>
+            </ul>
+        </div>
+
+        <div class="function" id="geoip">
+            <h3>geoip($ips)</h3>
+            <p><strong>Descrição:</strong> Verifica a geolocalização de um IP.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$ips:</strong> IP a ser localizado.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="NTics">
+            <h3>NTics($titulo, $DTinicio, $DTfim, $ncontrole, $destinatarios, $mensagem, $assunto)</h3>
+            <p><strong>Descrição:</strong> Gera um arquivo padrão ics para importação em agendas do Outlook ou iCal. Será criado um arquivo na pasta <strong class="gold">biblioteca/fotos/NCONTROLE_agenda.ics</strong> e enviado via e-mail.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$titulo:</strong> Título do evento.</li>
+                <li><strong>$DTinicio:</strong> Data de início.</li>
+                <li><strong>$DTfim:</strong> Data de fim.</li>
+                <li><strong>$ncontrole:</strong> Controle da tarefa.</li>
+                <li><strong>$destinatarios:</strong> E-mails dos destinatários.</li>
+                <li><strong>$mensagem:</strong> Mensagem complementar.</li>
+                <li><strong>$assunto:</strong> Assunto do e-mail.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="tabdin2">
+            <h3>tabdin2($resultado, $display, $cabecalho)</h3>
+            <p><strong>Descrição:</strong> Imprime em HTML uma tabela com o resultado fornecido pela pesquisa psql. Igual ao tabdin, porém com recursos JQuery.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$resultado:</strong> Resultado da consulta.</li>
+                <li><strong>$display:</strong> Opção de visualização (tabela, tabela2, gráfico, pie, bar, line).</li>
+                <li><strong>$cabecalho:</strong> Cabeçalho da tabela (separado por }).</li>
+            </ul>
+        </div>
+
+        <div class="function" id="NTup">
+            <h3>NTup($_FILES, $novonome, $caminhoup, $chave, $tamanhoMaximo, $largurat, $alturat)</h3>
+            <p><strong>Descrição:</strong> Faz upload de arquivo enviado pelo formulário HTML. Pode ser usado para upload personalizado. A variável $chave deve ser uma chave do apoiophp que contenha a função NTup.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$_FILES:</strong> Arquivo enviado pelo formulário.</li>
+                <li><strong>$novonome:</strong> Novo nome do arquivo.</li>
+                <li><strong>$caminhoup:</strong> Pasta de upload.</li>
+                <li><strong>$chave:</strong> Chave do apoiophp.</li>
+                <li><strong>$tamanhoMaximo:</strong> Tamanho máximo do arquivo em kb.</li>
+                <li><strong>$largurat:</strong> Largura da imagem.</li>
+                <li><strong>$alturat:</strong> Altura da imagem.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="NTgeraimg">
+            <h3>NTgeraimg($arquivo, $altura, $largura, $retorno, $encaixe)</h3>
+            <p><strong>Descrição:</strong> Cria uma cópia de uma imagem na pasta <strong class="gold">biblioteca/originais</strong> com o tamanho desejado.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$arquivo:</strong> Nome do arquivo.</li>
+                <li><strong>$altura:</strong> Altura da imagem.</li>
+                <li><strong>$largura:</strong> Largura da imagem.</li>
+                <li><strong>$retorno:</strong> Resultado da função (tag, echo ou return).</li>
+                <li><strong>$encaixe:</strong> Tipo de encaixe ("menor" ou "maior").</li>
+            </ul>
+        </div>
+
+        <div class="function" id="limitarTexto">
+            <h3>limitarTexto($texto, $limite)</h3>
+            <p><strong>Descrição:</strong> Limita o número de caracteres de uma massa de texto, evitando cortar palavras no meio.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto a ser limitado.</li>
+                <li><strong>$limite:</strong> Número máximo de caracteres.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="NTftp">
+            <h3>NTftp($conta_ftp, $conta_usuario, $conta_senha, $arquivo, $novo_nome)</h3>
+            <p><strong>Descrição:</strong> Envia um arquivo via FTP.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$conta_ftp:</strong> Conta FTP.</li>
+                <li><strong>$conta_usuario:</strong> Usuário FTP.</li>
+                <li><strong>$conta_senha:</strong> Senha FTP.</li>
+                <li><strong>$arquivo:</strong> Nome original do arquivo.</li>
+                <li><strong>$novo_nome:</strong> Novo nome do arquivo.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="MTsms2">
+            <h3>MTsms2($tel, $mensagem)</h3>
+            <p><strong>Descrição:</strong> Função para envio de SMS. É necessário contratar o serviço para funcionar.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$tel:</strong> Número de telefone.</li>
+                <li><strong>$mensagem:</strong> Mensagem a ser enviada.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="flushcache">
+            <h3>flushcache()</h3>
+            <p><strong>Descrição:</strong> Remove a cache de consultas do PlaceIn.</p>
+        </div>
+
+        <div class="function" id="gerafiltro">
+            <h3>gerafiltro($filtro)</h3>
+            <p><strong>Descrição:</strong> Adiciona filtro às consultas SQL.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$filtro:</strong> Filtro a ser adicionado.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="geraSubstituicao">
+            <h3>geraSubstituicao($texto)</h3>
+            <p><strong>Descrição:</strong> Substitui palavras reservadas ou variáveis no texto.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$texto:</strong> Texto com palavras a serem substituídas.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="adicionaHTML">
+            <h3>adicionaHTML($html)</h3>
+            <p><strong>Descrição:</strong> Adiciona conteúdo HTML ao sistema.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$html:</strong> Código HTML a ser adicionado.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="gravaBanco">
+            <h3>gravaBanco($tabela, $campos, $valores)</h3>
+            <p><strong>Descrição:</strong> Grava dados em uma tabela do banco de dados.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$tabela:</strong> Nome da tabela.</li>
+                <li><strong>$campos:</strong> Campos da tabela.</li>
+                <li><strong>$valores:</strong> Valores a serem gravados.</li>
+            </ul>
+        </div>
+
+        <div class="function" id="apagaBanco">
+            <h3>apagaBanco($tabela, $condicao)</h3>
+            <p><strong>Descrição:</strong> Apaga registros de uma tabela do banco de dados.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$tabela:</strong> Nome da tabela.</li>
+                <li><strong>$condicao:</strong> Condição para apagar registros.</li>
+            </ul>
+        </div>
+        <br><br>
+    </main>
+    <button class="botao-flutuante" onclick="irParaTopo()">^</button>
+    <script>
+        const inputPesquisa = document.getElementById('minhaPesquisa');
+        const itensLista = document.querySelectorAll('#indice-lateral ul li');
+
+        inputPesquisa.addEventListener('input', function() {
+            const termoPesquisa = this.value.toLowerCase();
+            const regexPesquisa = new RegExp(termoPesquisa, 'gi'); // Expressão regular para pesquisa global e sem distinção de maiúsculas/minúsculas
+
+            itensLista.forEach(function(item) {
+                const textoItem = item.textContent.toLowerCase();
+
+                if (regexPesquisa.test(textoItem)) {
+                    // Se o termo de pesquisa for encontrado
+                    item.style.display = 'block';
+
+                    // Realçar os termos de pesquisa (opcional (ESTÁ COM PROBLEMAS))
+                    // const textoComDestaque = textoItem.replace(regexPesquisa, `<span class="destaque">$1</span>`);
+                    // item.innerHTML = textoComDestaque;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Fazer o botão aparecer apenas ao abaixar um pouco a tela
+        window.onscroll = function() {
+            mostrarBotaoFlutuante();
+        };
+
+        function mostrarBotaoFlutuante() {
+            const botaoFlutuante = document.querySelector('.botao-flutuante');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 0) {
+                botaoFlutuante.style.opacity = 1;
+                botaoFlutuante.style.visibility = 'visible';
+            } else {
+                botaoFlutuante.style.opacity = 0;
+                botaoFlutuante.style.visibility = 'hidden';
+            }
+        }
+
+        // Botão de subir para o topo da página
+        function irParaTopo() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Gavetas
+        const drawers = document.querySelectorAll('.drawer');
+
+        drawers.forEach(drawer => {
+            const header = drawer.querySelector('.drawer-header');
+            const content = drawer.querySelector('.drawer-content');
+
+            header.addEventListener('click', () => {
+                drawer.classList.toggle('open');
+            });
+        });
+    </script>
+    <footer>
+        <p>Todos os Direitos Reservados © <a href="https://k2web.com.br/" target="_blank">K2Web</a></p>
+    </footer>
+</body>
+</html>
