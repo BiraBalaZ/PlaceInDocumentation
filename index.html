@@ -3,211 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Documentação PlaceIn</title>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            background-color: #141420;
-        }
-        
-        main {
-            margin: auto;
-            max-width: 1000px;
-        }
-
-        h1, h2, p, li {
-            color: white;
-        }
-
-        li strong {
-            color: #ceb675;
-        }
-
-        strong.gold {
-            color: #ceb675;
-        }
-
-        h3 {
-            color: #ceb675;
-            text-indent: 7pt;
-            background-image: linear-gradient(to right, #2a2b35, transparent);
-        }
-
-        hr {
-            color:gray;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-        }
-
-        div.function {
-            margin-top: 50px;
-        }
-
-        /* ìndice e pesquisa */
-        #indice-lateral {
-            overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
-            height: 820px; /* Define a altura máxima da div */
-            width: 200px;
-            background-color: #f2f2f2;
-            padding: 10px;
-            position: fixed;
-            top: 20px;
-            left: 0;
-        }
-
-        #indice-lateral ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #indice-lateral li {
-            margin-bottom: 10px;
-        }
-
-        #indice-lateral a {
-            text-decoration: none;
-            color: white;
-        }
-
-        #indice-lateral input[type="text"] {
-            width: 80%; /* Ajustar a largura da barra de pesquisa */
-            padding: 8px;
-            margin-bottom: 10px; /* Espaçamento entre a barra de pesquisa e os itens */
-            border: 1px solid #ccc;
-            background-color: #202033;
-            color: white;
-        }
-
-        .destaque {
-            background-color: rgb(24, 25, 97);
-            font-weight: bold;
-        }
-
-        /* Botão Flutuante para subir a tela */
-        .botao-flutuante {
-            position: fixed; /* Posicionamento fixo na tela */
-            bottom: 20px; /* Distância da parte inferior da tela */
-            right: 20px; /* Distância da parte direita da tela */
-            width: 50px; /* Largura do botão */
-            height: 50px; /* Altura do botão */
-            border-radius: 50%; /* Borda arredondada */
-            background-color: #30304d; /* Cor do botão */
-            color: #ceb675; /* Cor do texto */
-            text-align: center; /* Alinhamento do texto */
-            font-size: 20px; /* Tamanho da fonte */
-            cursor: pointer; /* Indicador de cursor ao passar o mouse */
-            z-index: 100; /* Posicionamento na frente de outros elementos */
-            transition: all 0.3s ease; /* Efeito de transição suave */
-        }
-
-        /* Estilos para o botão quando o mouse passa por cima */
-        .botao-flutuante:hover {
-            background-color: #141420; /* Cor do botão ao passar o mouse */
-        }
-
-        /* Estilos para o botão quando está ativo (pressionado) */
-        .botao-flutuante:active {
-            transform: scale(0.9); /* Reduzir o tamanho do botão ao pressionar */
-        }
-
-        /* Gavetas */
-        .drawer {
-            position: relative;
-            margin-bottom: 20px;
-            transition: 0.7s;
-        }
-
-        .drawer-header {
-            background-color: transparent;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .drawer-toggle i {
-            font-size: 18px;
-            transition: .5s;
-        }
-
-        .drawer-toggle i:hover {
-            font-weight: bold;
-            font-size: large;
-            transition: .5s;
-        }
-
-        .drawer-content {
-            display: none;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-
-        .drawer.open .drawer-content {
-            display: block;
-        }
-
-        .drawer.open .drawer-toggle i {
-            transform: rotate(180deg);
-        }
-        
-        /* Bloco de Código */
-        pre {
-            padding: 10px;
-            color: white;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-        }
-
-        /* Rodapé */
-        footer {
-            margin-top: 100px;
-            text-align: center;
-            background-color: #181825;
-            padding: 5px;
-            margin: -28px;
-        }
-
-        footer a {
-            text-decoration: none;
-            color: white;
-            transition: .5s;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-            font-weight: bold;
-            font-size: large;
-            transition: .5s;
-        }
-        
-        @media (max-width: 900px) {
-            /* Adjust layout for mobile screens */
-            #indice-lateral {
-                display: none; /* Hide the side index on mobile */
-            }
-
-            main {
-                width: 100%; /* Make main content occupy full width */
-                margin: 0; /* Remove left margin */
-            }
-
-            /* Additional styling for mobile layout, if needed */
-        }
-    </style>
 </head>
 <body id="Inicio">
     <div id="indice-lateral" style="background-color: transparent;">
-        <h2 style="color: #ceb675;">Índice</h2>
+        <h2 class="gold">Índice</h2>
         <hr>
         <input type="text" id="minhaPesquisa" placeholder="Pesquisar...">
         <ul>
@@ -405,14 +206,14 @@
         </div>
         <div class="function" id="mergelistas">
             <h3>mergelistas($lista1, $lista2, $separador, $diferemaiuscula)</h3>
-                <p><strong>Descrição:</strong> Compara duas listas, incluindo na <strong class="gold">$lista1</strong> os itens que estão na <strong class="gold">$lista2</strong> e não estão na <strong class="gold">$lista1</strong>. Indique o separador da lista e se diferencia maiúsculas de minúsculas.</p>
-                <p><strong>Parâmetros:</strong></p>
-                <ul>
-            <li><strong>$lista1:</strong> Primeira lista.</li>
-            <li><strong>$lista2:</strong> Segunda lista.</li>
-            <li><strong>$separador:</strong> Separador de itens.</li>
-            <li><strong>$diferemaiuscula:</strong> "s" ou "n" para diferenciar maiúsculas de minúsculas.</li>
-                </ul>
+            <p><strong>Descrição:</strong> Compara duas listas, incluindo na <strong class="gold">$lista1</strong> os itens que estão na <strong class="gold">$lista2</strong> e não estão na <strong class="gold">$lista1</strong>. Indique o separador da lista e se diferencia maiúsculas de minúsculas.</p>
+            <p><strong>Parâmetros:</strong></p>
+            <ul>
+                <li><strong>$lista1:</strong> Primeira lista.</li>
+                <li><strong>$lista2:</strong> Segunda lista.</li>
+                <li><strong>$separador:</strong> Separador de itens.</li>
+                <li><strong>$diferemaiuscula:</strong> "s" ou "n" para diferenciar maiúsculas de minúsculas.</li>
+            </ul>
         </div>
 
         <div class="function" id="login">
@@ -481,7 +282,7 @@
 
             <div class="drawer-header">
                 <span class="drawer-toggle">
-                    <i style="color: rgb(21, 142, 255); text-decoration: underline;">Ler Mais/Ler Menos</i>
+                    <i>Ler Mais/Ler Menos</i>
                 </span>
             </div>
 
@@ -1067,70 +868,9 @@ geraform2($destinatarios,$assunto,$camposform,$populate,
         <button class="botao-flutuante" onclick="irParaTopo()">^</button>
         <br><br>
     </main>
-    <script>
-        const inputPesquisa = document.getElementById('minhaPesquisa');
-        const itensLista = document.querySelectorAll('#indice-lateral ul li');
-
-        inputPesquisa.addEventListener('input', function() {
-            const termoPesquisa = this.value.toLowerCase();
-            const regexPesquisa = new RegExp(termoPesquisa, 'gi'); // Expressão regular para pesquisa global e sem distinção de maiúsculas/minúsculas
-
-            itensLista.forEach(function(item) {
-                const textoItem = item.textContent.toLowerCase();
-
-                if (regexPesquisa.test(textoItem)) {
-                    // Se o termo de pesquisa for encontrado
-                    item.style.display = 'block';
-
-                    // Realçar os termos de pesquisa (opcional (ESTÁ COM PROBLEMAS))
-                    // const textoComDestaque = textoItem.replace(regexPesquisa, `<span class="destaque">$1</span>`);
-                    // item.innerHTML = textoComDestaque;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-
-        // Fazer o botão aparecer apenas ao abaixar um pouco a tela
-        window.onscroll = function() {
-            mostrarBotaoFlutuante();
-        };
-
-        function mostrarBotaoFlutuante() {
-            const botaoFlutuante = document.querySelector('.botao-flutuante');
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > 0) {
-                botaoFlutuante.style.opacity = 1;
-                botaoFlutuante.style.visibility = 'visible';
-            } else {
-                botaoFlutuante.style.opacity = 0;
-                botaoFlutuante.style.visibility = 'hidden';
-            }
-        }
-
-        // Botão de subir para o topo da página
-        function irParaTopo() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Gavetas
-        const drawers = document.querySelectorAll('.drawer');
-
-        drawers.forEach(drawer => {
-            const header = drawer.querySelector('.drawer-header');
-            const content = drawer.querySelector('.drawer-content');
-
-            header.addEventListener('click', () => {
-                drawer.classList.toggle('open');
-            });
-        });
-    </script>
     <footer>
         <p>Todos os Direitos Reservados © <a href="https://k2web.com.br/" target="_blank">K2Web</a></p>
     </footer>
+    <script src="sctipt.js"></script>
 </body>
 </html>

@@ -1,0 +1,217 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #141420;
+}
+
+main {
+    margin: auto;
+    max-width: 1000px;
+}
+
+h1, h2, p, li {
+    color: white;
+}
+
+li strong {
+    color: #ceb675;
+}
+
+.gold {
+    color: #ceb675;
+}
+
+h3 {
+    color: #ceb675;
+    text-indent: 7pt;
+    background-image: linear-gradient(to right, #2a2b35, transparent);
+}
+
+hr {
+    color:gray;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+}
+
+div.function {
+    margin-top: 50px;
+}
+
+/* ìndice e pesquisa */
+#indice-lateral {
+    overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
+    height: 820px; /* Define a altura máxima da div */
+    width: 200px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    position: fixed;
+    top: 20px;
+    left: 0;
+}
+
+#indice-lateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+#indice-lateral li {
+    margin-bottom: 10px;
+}
+
+#indice-lateral a {
+    text-decoration: none;
+    color: white;
+    transition: .5s;
+}
+
+#indice-lateral a:hover {
+    text-decoration:underline;
+    background-color: #2a2b35;
+    color: #ceb675;
+    font-size: large;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+#indice-lateral input[type="text"] {
+    width: 80%; /* Ajustar a largura da barra de pesquisa */
+    padding: 8px;
+    margin-bottom: 10px; /* Espaçamento entre a barra de pesquisa e os itens */
+    border: 1px solid #ccc;
+    background-color: #202033;
+    color: white;
+}
+
+.destaque {
+    background-color: rgb(24, 25, 97);
+    font-weight: bold;
+}
+
+/* Botão Flutuante para subir a tela */
+.botao-flutuante {
+    position: fixed; /* Posicionamento fixo na tela */
+    bottom: 20px; /* Distância da parte inferior da tela */
+    right: 20px; /* Distância da parte direita da tela */
+    width: 50px; /* Largura do botão */
+    height: 50px; /* Altura do botão */
+    border-radius: 50%; /* Borda arredondada */
+    background-color: #30304d; /* Cor do botão */
+    color: #ceb675; /* Cor do texto */
+    text-align: center; /* Alinhamento do texto */
+    font-size: 20px; /* Tamanho da fonte */
+    cursor: pointer; /* Indicador de cursor ao passar o mouse */
+    z-index: 100; /* Posicionamento na frente de outros elementos */
+    transition: all 0.3s ease; /* Efeito de transição suave */
+}
+
+/* Estilos para o botão quando o mouse passa por cima */
+.botao-flutuante:hover {
+    background-color: #141420; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilos para o botão quando está ativo (pressionado) */
+.botao-flutuante:active {
+    transform: scale(0.9); /* Reduzir o tamanho do botão ao pressionar */
+}
+
+/* Gavetas */
+.drawer {
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.7s;
+}
+
+.drawer-header {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.drawer-toggle i {
+    font-size: 18px;
+    transition: .5s;
+}
+
+.drawer-toggle i:hover {
+    font-weight: bold;
+    font-size: x-large;
+    color: #ceb675;
+    transition: .5s;
+}
+
+.drawer-content {
+    margin-top: 25px;
+    display: none;
+    padding: 10px;
+    border: 1px solid #ceb675;
+    border-radius: 15px;
+}
+
+.drawer.open .drawer-content {
+    display: block;
+}
+
+.drawer.open .drawer-toggle i {
+    transform: rotate(180deg);
+}
+
+i {
+    color: rgb(21, 142, 255);
+    text-decoration: underline;
+}
+
+/* Bloco de Código */
+pre {
+    padding: 10px;
+    color: white;
+    border: 1px solid #ceb675;
+    border-radius: 15px;
+}
+
+/* Rodapé */
+footer {
+    margin-top: 100px;
+    text-align: center;
+    background-color: #181825;
+    padding: 5px;
+    margin: -28px;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+    transition: .5s;
+}
+
+footer a:hover {
+    color: #ceb675;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: large;
+    transition: .5s;
+}
+
+@media (max-width: 900px) {
+    /* Adjust layout for mobile screens */
+    #indice-lateral {
+        display: none; /* Hide the side index on mobile */
+    }
+
+    main {
+        width: 100%; /* Make main content occupy full width */
+        margin: 0; /* Remove left margin */
+    }
+
+    /* Additional styling for mobile layout, if needed */
+}
