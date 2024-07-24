@@ -116,6 +116,7 @@ div.function {
 /* Estilos para o botão quando o mouse passa por cima */
 .botao-flutuante:hover {
     background-color: #141420; /* Cor do botão ao passar o mouse */
+    font-weight: bolder;
 }
 
 /* Estilos para o botão quando está ativo (pressionado) */
